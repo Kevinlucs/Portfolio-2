@@ -6,7 +6,7 @@
   --primary-bg-variant: rgb(10, 14, 18);
   --primary-accent: #871cc1;
   --secondary-accent: #a76cc7;
-  
+
   --main-text-color: #ffffff;
   --secondary-text-color: #a4a5b8;
   --primary-color: #3a435d;
@@ -17,13 +17,13 @@
   --primary-bg-color: rgb(255, 255, 255);
   --primary-bg-variant: #e8e9ed;
   --primary-accent: #871cc1;
-  --text-color: #000000;
+  --main-text-color: #000000;
   --secondary-text-color: #232738;
   --primary-color: #3a435d;
 }
 
-.whitemode .about-home {
-  background-image: url("/assets/images/bg-light.png");
+.whitemode .hero {
+  background-image: url("/img/backgrounds/bg-light.png");
 }
 
 /* Common styles */
@@ -35,6 +35,8 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   letter-spacing: -0.15px;
+  background: var(--primary-bg-color);
+  color: var(--main-text-color);
 }
 
 .container {
@@ -98,9 +100,11 @@ body {
 
 .btn-white:hover,
 .btn-white:focus {
-  background: var(--primary-accent); /*roxo escuro*/
-  border: 2px solid var(--primary-accent); /*roxo escuro*/
-  color: var(--main-text-color); 
+  background: var(--primary-accent);
+  /*roxo escuro*/
+  border: 2px solid var(--primary-accent);
+  /*roxo escuro*/
+  color: var(--main-text-color);
 }
 
 .btn-white:active {
@@ -135,6 +139,31 @@ h5 {
 
 .white {
   color: var(--white-color);
+}
+
+#theme-switch {
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#theme-switch img {
+  fill: var(--text-color);
+}
+
+#theme-switch img:last-child {
+  display: none;
+}
+
+.whitemode #theme-switch img:first-child {
+  display: none;
+}
+
+.whitemode #theme-switch img:last-child {
+  display: block;
 }
 
 /* Header */
@@ -281,6 +310,7 @@ h5 {
     width: 24px;
   }
 }
+
 .social-links-row svg {
   width: 30px;
   height: 30px;
@@ -303,6 +333,8 @@ h5 {
 /* About section */
 .about {
   padding: 7rem 0;
+  background-color: var(--primary-bg-color);
+  color: var(--main-text-color);
 }
 
 .about-descr {
@@ -314,15 +346,14 @@ h5 {
 
 /* Carrossel container */
 .carrossel-container {
-  width: 100%;
-  height: 150px;
-  overflow: hidden;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  width: 87%;
+  height: 150px;
+  overflow: hidden;
+  margin: 4rem auto;
+  padding: 0 1rem;
 }
 
 .carrossel {
@@ -372,6 +403,7 @@ h5 {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -396,6 +428,7 @@ h5 {
 .skill-percent {
   float: right;
 }
+
 .skill-bar__progress {
   background-color: var(--gray-color);
   border-radius: 5px;
@@ -408,8 +441,10 @@ h5 {
 .skill-bar__fill {
   background-color: var(--secondary-accent);
   height: 4px;
-  width: 0; /* Initial width is 0 */
-  transition: width 1.5s ease-in-out; /* Smooth transition for the fill */
+  width: 0;
+  /* Initial width is 0 */
+  transition: width 1.5s ease-in-out;
+  /* Smooth transition for the fill */
 }
 
 .about-download-btn {
@@ -431,8 +466,7 @@ h5 {
   display: block;
   height: 50px;
   margin: 0 auto 20px;
-  filter: invert(33%) sepia(7%) saturate(243%) hue-rotate(145deg)
-    brightness(94%) contrast(81%);
+  filter: invert(33%) sepia(7%) saturate(243%) hue-rotate(145deg) brightness(94%) contrast(81%);
 }
 
 .service-card-title {
@@ -464,6 +498,7 @@ h5 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 2px;
 }
 
 .project-box {
@@ -510,6 +545,7 @@ h5 {
   opacity: 0;
   visibility: hidden;
   overflow: hidden;
+  color: white;
 }
 
 .project-mask p {
@@ -519,6 +555,7 @@ h5 {
   font-weight: 400;
   margin-top: 0;
   text-align: left;
+  color: white;
 }
 
 .project-mask .project-caption {
@@ -532,15 +569,6 @@ h5 {
   opacity: 0;
 }
 
-.project-mask p {
-  text-transform: uppercase;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  font-weight: 400;
-  margin-top: 0;
-  text-align: left;
-}
-
 /* Contact */
 .contact {
   padding: 7rem 0;
@@ -549,7 +577,7 @@ h5 {
 
 .contact-content {
   font-size: clamp(1rem, 0.964rem + 0.18vw, 1.125rem);
-  color: var(--supportive-text-color);
+  color: var(--main-text-color);
   margin: 0 auto 20px;
 }
 
@@ -570,8 +598,8 @@ h5 {
   width: 100%;
   padding: 15px;
   font-size: 15px;
-  color: var(--gray-text-color);
-  border: 1px solid var(--gray-color-2);
+  color: var(--main-text-color);
+  border: 1px solid var(--main-text-color);
   margin: 7px 0;
 }
 
@@ -589,7 +617,7 @@ h5 {
 
 /* Footer */
 .footer {
-  background-color: var(--primary-accent);
+  background-color: var(--primary-bg-color);
   color: var(--gray-color-3);
 }
 
@@ -606,8 +634,7 @@ h5 {
 }
 
 .footer-social a:hover {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
-    brightness(102%) contrast(102%);
+  fill: #871cc1;
 }
 
 .footer-copyright {
@@ -661,8 +688,7 @@ h5 {
   justify-content: center;
   width: 100%;
   height: 100%;
-  filter: invert(4%) sepia(23%) saturate(2306%) hue-rotate(148deg)
-    brightness(91%) contrast(90%);
+  filter: invert(4%) sepia(23%) saturate(2306%) hue-rotate(148deg) brightness(91%) contrast(90%);
 }
 
 .goToTop img {
@@ -671,8 +697,7 @@ h5 {
 }
 
 .goToTop:hover {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
-    brightness(102%) contrast(102%);
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
 }
 
 .goToTop.reveal {
@@ -707,7 +732,7 @@ h5 {
   display: inline-block;
 }
 
-.jumping-dots > div {
+.jumping-dots>div {
   position: absolute;
   content: "";
   top: 0;
@@ -718,24 +743,24 @@ h5 {
   border-radius: 50%;
 }
 
-.jumping-dots > div:nth-of-type(1) {
+.jumping-dots>div:nth-of-type(1) {
   left: 20px;
 }
 
-.jumping-dots > div:nth-of-type(3) {
+.jumping-dots>div:nth-of-type(3) {
   left: -20px;
 }
 
-.jumping-dots > div {
+.jumping-dots>div {
   animation: jumping-dots 1.2s infinite ease;
   animation-delay: 0.2s;
 }
 
-.jumping-dots > div:nth-of-type(1) {
+.jumping-dots>div:nth-of-type(1) {
   animation-delay: 0.4s;
 }
 
-.jumping-dots > div:nth-of-type(3) {
+.jumping-dots>div:nth-of-type(3) {
   animation-delay: 0s;
 }
 

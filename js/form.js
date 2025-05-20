@@ -1,38 +1,46 @@
 const form = () => {
-  const contactForm = document.querySelector(".contactForm"),
-    responseMessage = document.querySelector(".response");
+    const contactForm = document.querySelector(".contactForm"),
+        responseMessage = document.querySelector(".response");
 
-  contactForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    responseMessage.classList.add("open");
-    responseMessage.textContent = "Please wait...";
+    contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    async function getData() {
-      try {
-        const response = await fetch("mail.php", {
-          method: "POST",
-          body: formData,
-        });
-        if (!response.ok) {
-          responseMessage.textContent = result;
+        const form = e.target;
+        const formData = new FormData(form);
+
+        responseMessage.classList.add("open");
+        responseMessage.textContent = "Please wait...";
+
+        // Debug: mostrar dados no console
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
         }
 
-        const result = await response.text();
-        responseMessage.textContent = result;
-      } catch (error) {
-        console.error(error.message);
-      }
-    }
+        try {
+            const response = await fetch("mail.php", {
+                method: "POST",
+                body: formData,
+            });
 
-    getData()
-      .then(
-        setTimeout(() => {
-          responseMessage.classList.remove("open");
-        }, 3000)
-      )
-      .finally(form.reset());
-  });
+            const result = await response.text();
+
+            if (!response.ok) {
+                responseMessage.textContent = "Error: " + result;
+                return;
+            }
+
+            responseMessage.textContent = result;
+
+            // Feedback visual e reset do form
+            setTimeout(() => {
+                responseMessage.classList.remove("open");
+                form.reset();
+            }, 3000);
+        } catch (error) {
+            console.error("Erro no envio do formulário:", error);
+            responseMessage.textContent = "Erro ao enviar o formulário.";
+        }
+    });
 };
+
 export default form;
