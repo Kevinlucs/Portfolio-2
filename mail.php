@@ -1,39 +1,64 @@
 <?php
-require 'phpmailer/PHPMailer.php';
-require 'phpmailer/SMTP.php';
-require 'phpmailer/Exception.php';
+require 'vendor/autoload.php';
 
-$title = "New message";
-$name = $_POST['name'];
-$email = $_POST['email'];
-$message = $_POST['message'];
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
-$subject = "New Message";
-$body = "Name: $name\nEmail: $email\nMessage:\n$message";
+// Carregar variáveis do .env
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-$mail = new PHPMailer\PHPMailer\PHPMailer();
+$title = "Portfólio | Contato";
+$name = htmlspecialchars($_POST['name'] ?? '');
+$email = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
+$message = htmlspecialchars($_POST['message'] ?? '');
+
+if (!$email) {
+  http_response_code(400);
+  echo "Email inválido.";
+  exit;
+}
+
+$subject = "Portfólio | Contato";
+$body = "
+    <div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #eee; border-radius: 8px; background-color: #fafafa;\">
+        <h2 style=\"color: #333; text-align: center;\">📩 Nova mensagem do seu portfólio</h2>
+        <hr style=\"border: none; border-top: 1px solid #ddd; margin: 20px 0;\" />
+        <p><strong>👤 Nome:</strong> {$name}</p>
+        <p><strong>📧 E-mail:</strong> <a href=\"mailto:{$email}\">{$email}</a></p>
+        <p><strong>📝 Mensagem:</strong></p>
+        <div style=\"padding: 12px; background-color: #fff; border: 1px solid #ddd; border-radius: 6px;\">
+            <p>" . nl2br($message) . "</p>
+        </div>
+        <hr style=\"border: none; border-top: 1px solid #ddd; margin: 20px 0;\" />
+        <p style=\"text-align: center; font-size: 12px; color: #999;\">Este e-mail foi enviado via <a href=\"https://kevinlucas.com.br\">kevinlucas.com.br</a></p>
+    </div>
+";
+
+$mail = new PHPMailer(true);
 
 try {
   $mail->isSMTP();
   $mail->CharSet = "UTF-8";
-  $mail->SMTPAuth   = true;
-
-  $mail->Host       = 'smtp.example.com';                     //Set the SMTP server to send through
-  $mail->Username   = 'user@example.com';                     //SMTP username
-  $mail->Password   = 'secret';                               //SMTP password
+  $mail->SMTPAuth = true;
+  $mail->Host = $_ENV['MAIL_HOST'];
+  $mail->Username = $_ENV['MAIL_USERNAME'];
+  $mail->Password = $_ENV['MAIL_PASSWORD'];
   $mail->SMTPSecure = 'ssl';
-  $mail->Port       = 465;
+  $mail->Port = $_ENV['MAIL_PORT'];
 
-  $mail->setFrom('from@example.com', $title);
-  $mail->addAddress('youraddress@mail.me');
+  $mail->setFrom($_ENV['MAIL_FROM'], $_ENV['MAIL_FROM_NAME']);
+  $mail->addReplyTo($email, $name);
+  $mail->addAddress($_ENV['MAIL_TO']);
   $mail->isHTML(true);
-  $mail->Subject = $title;
+  $mail->Subject = $subject;
   $mail->Body = $body;
 
   $mail->send();
   http_response_code(200);
-  echo "Message sent successfully!";
+  echo "Mensagem enviada com sucesso!";
 } catch (Exception $e) {
   http_response_code(500);
-  echo "Failed to send the message. Try again";
+  echo "Erro ao enviar: {$mail->ErrorInfo}";
 }
