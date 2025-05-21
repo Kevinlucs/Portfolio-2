@@ -86,47 +86,34 @@ body {
   outline: 0;
 }
 
-.btn:active {
-  background-color: #8b4a48;
-}
-
 .btn-white {
-  background: transparent;
+  background: var(--primary-accent);
   font-weight: 700;
   border: 2px solid var(--primary-accent);
-  color: var(--primary-accent);
+  color: var(--main-text-color);
   transition: all 0.3s ease-in;
 }
 
 .btn-white:hover,
 .btn-white:focus {
-  background: var(--primary-accent);
-  /*roxo escuro*/
-  border: 2px solid var(--primary-accent);
-  /*roxo escuro*/
+  background: var(--secondary-accent);
+  /*roxo claro*/
+  border: 2px solid var(--secondary-accent);
+  /*roxo claro*/
   color: var(--main-text-color);
 }
 
-.btn-white:active {
-  background-color: var(--secondary-accent);
-  border-color: var(--secondary-accent);
-}
-
 .btn-red {
-  background: var(--secondary-accent);
-  border: 2px solid var(--secondary-accent);
+  background: var(--primary-accent);
+  border: 2px solid var(--primary-accent);
   color: var(--white-color);
   transition: all 0.3s ease-in;
 }
 
 .btn-red:hover,
 .btn-red:focus {
-  background: var(--primary-accent);
-  border: 2px solid var(--primary-accent);
-}
-
-.btn-red:active {
-  background-color: #3c4446;
+  background: var(--secondary-accent);
+  border: 2px solid var(--secondary-accent);
 }
 
 h5 {
@@ -169,8 +156,8 @@ h5 {
 /* Header */
 .header {
   z-index: 100;
-  background-color: transparent;
-  height: 90px;
+  background: var(--primary-bg-color);
+  height: 75px;
   width: 100%;
   position: absolute;
   top: 0;
@@ -183,8 +170,8 @@ h5 {
   justify-content: space-between;
   align-items: center;
   color: var(--main-text-color);
-  padding: 0 25px;
-  height: 90px;
+  padding: 1rem 2.5%;
+  height: 75px;
 }
 
 .header-sticky {
@@ -193,10 +180,10 @@ h5 {
   left: 0;
   width: 100%;
   z-index: 1999;
-  background-color: var(--primary-bg-color);
+  background: var(--primary-bg-color);
   padding-top: 0;
   padding-bottom: 0;
-  transition: all 0.3s ease-in-out;
+  /* transition: all 0.3s ease-in-out; */
 }
 
 .logo {
@@ -234,7 +221,7 @@ h5 {
 .hero {
   align-items: center;
   padding: 10% 15%;
-  background-color: var(--primary-bg-color);
+  background: var(--primary-bg-variant);
   background-image: url("/img/backgrounds/bg-dark.png");
   background-attachment: fixed;
   background-position: 50%;
@@ -449,6 +436,7 @@ h5 {
 
 .about-download-btn {
   margin-top: 40px;
+  
 }
 
 .services-row {
