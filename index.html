@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
         integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body>
     <header id="header" class="header">
         <div class="container container-lg">
-            <div class="header-nav" data-aos="fade-down" data-aos-duration="1000">
+            <div class="header-nav">
                 <button id="theme-switch">
                     <img src="img/icons/sol.svg" alt="sol icon" />
                     <img src="img/icons/lua.svg" alt="lua icon" />
@@ -50,7 +51,7 @@
             <div class="hero-row" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="500"
                 data-aos-duration="1000">
                 <div class="hero-content">
-                    <!-- <span class="hero-greeting"></span> -->
+                    <span class="hero-greeting"></span>
                     <h1 class="hero-heading">Kevin Lucas</h1>
                     <span class="hero-heading-subtitle">Full Stack Developer</span>
                     <div class="about-social-list">
@@ -74,15 +75,9 @@
                             </a>
                         </div>
                     </div>
-
-                    <div>
-                        <!-- <a href="#projects" class="btn">My Portfolio</a> -->
-                        <!-- <a href="#contact" class="btn btn-white">Contact Me</a> -->
-                    </div>
                 </div>
                 <div class="hero-img">
-                    <img src="img/hero/Foto.png" alt="Picture of Christian Buehner taken from Unsplash</a>
-              " />
+                    <img src="img/hero/Foto.png" alt="...">
                 </div>
             </div>
         </div>
@@ -190,47 +185,65 @@
                 <h2 class="title">Projects</h2>
             </div>
 
-            <div class="projects-row">
-                <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-duration="1000">
-                    <a href="#!">
-                        <img class="project-img" src="img/works/portfolio1.jpg" alt="" />
-                        <div class="project-mask">
-                            <div class="project-caption">
-                                <h5 class="white">Sistema Escala de Serviço</h5>
-                                <p class="white">Web Development</p>
-                            </div>
-                        </div>
-                    </a>
+            <div class="carousel-container">
+                <button class="carousel-button prev" aria-label="Previous project">&#8592;</button>
+
+                <div class="carousel-track-container">
+                    <ul class="carousel-track">
+                        <li class="carousel-slide project-box">
+                            <a href="#!">
+                                <img class="project-img" src="img/works/portfolio1.jpg"
+                                    alt="Sistema Escala de Serviço" />
+                                <div class="project-mask">
+                                    <div class="project-caption">
+                                        <h5 class="white">Sistema Escala de Serviço</h5>
+                                        <p class="white">Web Development</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="carousel-slide project-box">
+                            <a href="#!">
+                                <img class="project-img" src="img/works/portfolio2.jpg" alt="Portfolio" />
+                                <div class="project-mask">
+                                    <div class="project-caption">
+                                        <h5 class="white">Portfolio</h5>
+                                        <p class="white">Web Development</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="carousel-slide project-box">
+                            <a href="#!">
+                                <img class="project-img" src="img/works/portfolio2.jpg" alt="Portfolio" />
+                                <div class="project-mask">
+                                    <div class="project-caption">
+                                        <h5 class="white">Portfolio</h5>
+                                        <p class="white">Web Development</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="carousel-slide project-box">
+                            <a href="#!">
+                                <img class="project-img" src="img/works/portfolio3.jpg" alt="Cosmic Sea" />
+                                <div class="project-mask">
+                                    <div class="project-caption">
+                                        <h5 class="white">Cosmic Sea</h5>
+                                        <p class="white">UI/UX Design, Web Development</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="900"
-                    data-aos-duration="1000">
-                    <a href="#!">
-                        <img class="project-img" src="img/works/portfolio2.jpg" alt="" />
-                        <div class="project-mask">
-                            <div class="project-caption">
-                                <h5 class="white">Portfolio</h5>
-                                <p class="white">Web Development</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="1200"
-                    data-aos-duration="1000">
-                    <a href="#!">
-                        <img class="project-img" src="img/works/portfolio3.jpg" alt="" />
-                        <div class="project-mask">
-                            <div class="project-caption">
-                                <h5 class="white">Cosmic Sea</h5>
-                                <p class="white">
-                                    UI/UX Design, Web Development
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+
+                <button class="carousel-button next" aria-label="Next project">&#8594;</button>
             </div>
         </div>
     </section>
+
+
 
     <section id="contact" class="contact">
         <div class="container">
@@ -304,6 +317,7 @@
     <script type="module" src="js/main.js"></script>
     <script src="js/carrossel.js"></script>
     <script type="text/javascript" src="js/whitemode.js"></script>
+    <script src="js/carrossel-projects.js"></script>
 </body>
 
 </html>

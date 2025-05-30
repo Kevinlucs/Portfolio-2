@@ -6,6 +6,7 @@
     --primary-bg-variant: rgb(10, 14, 18);
     --primary-accent: #871cc1;
     --secondary-accent: #a76cc7;
+    --white-color: #fff;
 
     --main-text-color: #ffffff;
     --secondary-text-color: #a4a5b8;
@@ -42,7 +43,6 @@ body {
 .container {
     padding: 0 32px;
     max-width: 1200px;
-    /* max-width: clamp(54.5rem, 38.125rem + 81.88vw, 120rem); */
     margin: 0 auto;
 }
 
@@ -90,7 +90,7 @@ body {
     background: var(--primary-accent);
     font-weight: 700;
     border: 2px solid var(--primary-accent);
-    color: var(--main-text-color);
+    color: white;
     transition: all 0.3s ease-in;
 }
 
@@ -99,8 +99,6 @@ body {
     background: var(--secondary-accent);
     /*roxo claro*/
     border: 2px solid var(--secondary-accent);
-    /*roxo claro*/
-    color: var(--main-text-color);
 }
 
 .btn-red {
@@ -155,23 +153,23 @@ h5 {
 
 /* Header */
 .header {
-    z-index: 100;
-    background: var(--primary-bg-color);
+    position: relative;
+    z-index: 50;
     height: 75px;
     width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    background: var(--primary-bg-color);
 }
 
 .header-nav {
+    width: 100%;
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: var(--main-text-color);
     padding: 1rem 2.5%;
     height: 75px;
+    z-index: 100;
 }
 
 .header-sticky {
@@ -396,37 +394,6 @@ h5 {
     margin-bottom: 30px;
 }
 
-.skill-title,
-.skill-percent {
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 400;
-    /* text-transform: uppercase; */
-    letter-spacing: 0px;
-}
-
-.skill-percent {
-    float: right;
-}
-
-.skill-bar__progress {
-    background-color: var(--gray-color);
-    border-radius: 5px;
-    height: 4px;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-}
-
-.skill-bar__fill {
-    background-color: var(--secondary-accent);
-    height: 4px;
-    width: 0;
-    /* Initial width is 0 */
-    transition: width 1.5s ease-in-out;
-    /* Smooth transition for the fill */
-}
-
 .about-download-btn {
     margin-top: 40px;
 }
@@ -465,10 +432,10 @@ h5 {
     text-align: center;
 }
 
-/* Works */
+/* Projetos */
 .projects {
-    padding-top: 4rem;    
-    padding-bottom: 6rem;    
+    padding-top: 4rem;
+    padding-bottom: 6rem;
     background: var(--primary-bg-variant);
 }
 
@@ -476,22 +443,43 @@ h5 {
     text-align: center;
 }
 
-.projects-row {
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2px;
+    transition: transform 0.4s ease-in-out;
+    will-change: transform;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0 10px;
 }
 
 .project-box {
     position: relative;
     overflow: hidden;
     display: block;
+    width: 100%;
     max-width: 510px;
+    margin: 0 auto;
 }
 
 .project-box a {
     display: inline-block;
+    width: 100%;
 }
 
 .project-box:hover .project-mask {
@@ -514,10 +502,14 @@ h5 {
     transform: scale(1);
     width: 100%;
     transition: all 2s cubic-bezier(0.23, 1, 0.32, 1) 0s;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
 }
 
 .project-mask {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.7);
     height: 100%;
     position: absolute;
     transition: all 0.5s ease-in-out 0s;
@@ -549,6 +541,36 @@ h5 {
     text-align: left;
     transition: all 0.5s ease-in-out 0s;
     opacity: 0;
+}
+
+/* Botões do carrossel */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-accent);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+    z-index: 999;
+    border-radius: 50%;
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
+    user-select: none;
+}
+
+.carousel-button:hover {
+    opacity: 1;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
 }
 
 /* Contact */
