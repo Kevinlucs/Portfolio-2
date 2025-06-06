@@ -151,6 +151,43 @@ h5 {
     display: block;
 }
 
+#nav-btn {
+    height: 50px;
+    width: 50px;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: absolute; /* Garantindo que o botão sempre será posicionado de maneira correta */
+    right: 10px;
+    top: 15px; /* Ajuste conforme necessário */
+}
+
+#nav-btn-img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: invert(0);
+    transition: filter 0.2s ease;
+}
+
+body:not(.whitemode) #nav-btn-img[src*="open.svg"] {
+    filter: invert(1);
+}
+
+body.whitemode #nav-btn-img {
+    filter: invert(0);
+}
+
+.nav.open #nav-btn-img[src*="close.svg"] {
+    filter: invert(
+        1
+    ); /* inverte o “close” branco para preto, para aparecer sobre o fundo branco. */
+}
+
 /* Header */
 .header {
     position: relative;
@@ -457,15 +494,14 @@ h5 {
 
 .carousel-track {
     display: flex;
+    gap: 5px;
     transition: transform 0.4s ease-in-out;
     will-change: transform;
 }
 
 .carousel-slide {
-    flex: 0 0 100%;
-    max-width: 100%;
+    flex: 0 0 auto;
     box-sizing: border-box;
-    padding: 0 10px;
 }
 
 .project-box {
@@ -544,6 +580,11 @@ h5 {
 }
 
 /* Botões do carrossel */
+.carousel-container {
+    position: relative;
+    overflow: visible;
+}
+
 .carousel-button {
     position: absolute;
     top: 50%;
@@ -551,14 +592,19 @@ h5 {
     background-color: var(--primary-accent);
     border: none;
     color: white;
-    font-size: 2rem;
-    padding: 0.2rem 0.6rem;
+    font-size: 1.25rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     z-index: 999;
     border-radius: 50%;
     opacity: 0.75;
     transition: opacity 0.3s ease;
     user-select: none;
+    padding: 0;
 }
 
 .carousel-button:hover {
@@ -566,11 +612,28 @@ h5 {
 }
 
 .carousel-button.prev {
-    left: 10px;
+    left: -10px;
 }
 
 .carousel-button.next {
-    right: 10px;
+    right: -10px;
+}
+
+.carousel-track.two-only {
+    gap: 0 !important;
+    justify-content: center;
+    transform: none !important;
+}
+
+.carousel-track.two-only .carousel-slide {
+    min-width: 510px;
+    flex: 0 0 auto;
+    margin: 0 10px;
+}
+
+.carousel-track.static-two ~ .carousel-button.prev,
+.carousel-track.static-two ~ .carousel-button.next {
+    display: none !important;
 }
 
 /* Contact */
