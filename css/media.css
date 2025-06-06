@@ -92,8 +92,8 @@
         left: 0;
         width: 100vw !important;
         height: 100vh !important;
-        background: transparent;
-        z-index: 10000; /* maior que header-nav */
+        background: #fff;
+        z-index: 10000;
     }
 
     .nav.open .nav-list {
@@ -103,7 +103,7 @@
         width: 100vw !important;
         height: 100vh !important;
         background-color: #fff;
-        z-index: 10001; /* ainda maior */
+        z-index: 10001;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -123,14 +123,11 @@
     }
 
     .nav-btn {
-        display: block;
-        position: fixed;
-        top: 36px;
+        display: flex; /* exibe o botão de menu (hambúrguer/close) em telas pequenas */
+        position: fixed; /* conforme seu layout, para que o botão flutue sobre a página */
+        top: 36px; /* ajuste conforme seu design */
         right: 30px;
         z-index: 11000;
-        background: none;
-        border: none;
-        cursor: pointer;
     }
 
     .nav.open .nav-btn {
@@ -218,5 +215,11 @@
 @media (min-width: 978px) {
     .hero-img {
         transform: translate(200px, -30px);
+    }
+}
+
+@media (max-width: 977px) {
+    .carousel-track {
+        gap: 10px; /* exemplo: fica 10px entre slides em telas até 977px */
     }
 }
